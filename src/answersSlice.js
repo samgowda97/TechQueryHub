@@ -1,4 +1,3 @@
-// answersSlice.js
 
 import { createSlice } from '@reduxjs/toolkit';
 
@@ -8,7 +7,6 @@ const initialState = {
   answers: [
     { id: nextAnswerId++, questionId: 1,user:"Mark", text: 'Redux is a predictable state container for JavaScript apps.' },
     { id: nextAnswerId++, questionId: 2,user:"Joe", text: 'React Hooks allow you to use state and other React features without writing a class.' },
-    // Add more dummy answers here if needed
   ],
 };
 

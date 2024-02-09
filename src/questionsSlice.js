@@ -1,4 +1,3 @@
-// questionsSlice.js
 
 import { createSlice } from '@reduxjs/toolkit';
 
@@ -8,7 +7,6 @@ const initialState = {
   questions: [
     { id: nextQuestionId++,user:"john", text: 'What is Redux?' },
     { id: nextQuestionId++,user:"David", text: 'How to use React Hooks?' },
-    // Add more dummy questions here if needed
   ],
 };
 
