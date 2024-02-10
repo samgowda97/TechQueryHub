@@ -1,7 +1,6 @@
-// userSlice.js
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = null; // Initial state for the logged-in user
+const initialState = null; 
 
 const userSlice = createSlice({
   name: 'user',

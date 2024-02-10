@@ -10,15 +10,16 @@ const initialState = {
   ],
 };
 
+
 const answersSlice = createSlice({
   name: 'answers',
-  initialState,
+  initialState: initialState,
   reducers: {
     addAnswer(state, action) {
-      state.answers.push(action.payload);
+      const { id, questionId, user, text } = action.payload;
+      state.answers.push({ id, questionId, user, text });
     },
   },
 });
-
 export const { addAnswer } = answersSlice.actions;
 export default answersSlice.reducer;
