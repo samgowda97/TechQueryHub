@@ -127,34 +127,39 @@ filteredQuestions = selectedCategories.length > 0
       <QuestionForm handleQuestionSubmit={handleQuestionSubmit}  setNewQuestion={setNewQuestion} isLoggedin={isLoggedin} newQuestion={newQuestion}/>
 
 {filteredQuestions.map((question) => (
-  <div key={question.id} style={{ marginBottom: '20px', display: 'flex', flexDirection: 'column' }}>
-    <div style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
-      <Avatar variant="square" {...stringAvatar(question.user)} />
+  <div >
+    <div key={question.id} style={{ marginBottom: '20px', display: 'flex', alignItems: 'center' }}>
+    <div style={{ display: 'flex', alignItems: 'center', marginRight: '10px' }}>
+    <Tooltip title={`${question.user}`} arrow>
+ <Avatar variant="square" {...stringAvatar(question.user)} /></Tooltip>
       <strong style={{ marginLeft: '10px' }}>Question:</strong>
       <span style={{ marginLeft: '10px' }}>{question.text}</span>
     </div>
+    {/* <Tooltip title="Answer" arrow> */}
+      <Button
+        size="small"
+        variant="contained"
+        onClick={() => setSelectedQuestionId(question.id)}
+      >
+        Answer
+      </Button>
+    {/* </Tooltip> */}
+  </div>
     <ul>
       {filteredAnswers
         .filter(answer => answer.questionId === question.id)
         .map(answer => (
           <div key={answer.id}>
             <p style={{ display: 'flex', alignItems: 'center' }}>
-              <Avatar {...stringAvatar(answer.user)} />
+                 <Tooltip title={`${answer.user}`} arrow>
+ <Avatar {...stringAvatar(answer.user)} />
+ </Tooltip>
               <span style={{ marginLeft: '10px' }}>{answer.text}</span>
             </p>
           </div>
         ))}
     </ul>
-    <Tooltip title="Answer" arrow>
-      <Button
-        size="small"
-        variant="contained"
-        onClick={() => setSelectedQuestionId(question.id)}
-        style={{ alignSelf: 'flex-start' }} // Align the button to the start of the flex container
-      >
-        Answer
-      </Button>
-    </Tooltip>
+    
     {selectedQuestionId === question.id && (
       <form onSubmit={handleAnswerSubmit} style={{ marginTop: '10px' }}>
         <TextField
