@@ -12,10 +12,7 @@ import NavBar from './Components/NavBar';
 import { stringAvatar } from './commonFunctionalities';
 import CategoryFilter from './Components/CategoryFilter';
 import { v4 as uuidv4 } from 'uuid';
-import { Card, CardContent, Typography} from '@mui/material';
-import { Padding } from '@mui/icons-material';
 import AnswerForm from './Components/AnswerForm';
-import SelectQuestionCategory from './Components/SelectQuestionCategory';
 
 
 const QuestionsAndAnswers = () => {
@@ -102,13 +99,10 @@ const handleClose = (event, reason) => {
   };
   const [searchTerm, setSearchTerm] = useState('');
 
-//   let filteredQuestions = questions.filter(question =>
-//     question.text.toLowerCase().includes(searchTerm.toLowerCase())
-//   );
+
   const filteredAnswers = answers.filter(answer =>
     answer.text.toLowerCase().includes(searchTerm.toLowerCase())
   );
-// console.log(questions,"questions")
 
 const [selectedCategories, setSelectedCategories] = useState('');
 
@@ -116,9 +110,6 @@ const handleSelectCategories = (categories) => {
   setSelectedCategories(categories);
 };
 
-// filteredQuestions = selectedCategories.length > 0
-// ? questions.filter(question => selectedCategories.includes(question.category))
-// : questions;
 
 
 const filteredQuestions = useMemo(() => {
