@@ -1,3 +1,4 @@
+import { TextFields } from '@mui/icons-material'
 import { Button, TextField } from '@mui/material'
 import React from 'react'
 
@@ -5,7 +6,7 @@ const AnswerForm = ({handleAnswerSubmit,answerText,setAnswerText}) => {
   return (
     <div>
         <form onSubmit={handleAnswerSubmit} style={{ marginTop: '10px' }}>
-        <TextField
+        <TextFields
           type="text"
           value={answerText}
           onChange={(e) => setAnswerText(e.target.value)}
