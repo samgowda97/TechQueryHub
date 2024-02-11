@@ -2,7 +2,7 @@ import { Checkbox, FormControl, InputLabel, ListItemText, MenuItem, OutlinedInpu
 import React, { useState } from 'react'
 
 const CategoryFilter = ({onSelectCategories}) => {
-    const categories = ["Programming Languages","Library","React", "Frameworks", "Databases", "Networking"];
+    const categories = ["Programming Languages","Library","Frontend","Backend","Frameworks", "Databases", "Networking"];
     const [selectedCategories, setSelectedCategories] = useState([]);
 
     const handleChange = (event) => {
@@ -11,8 +11,8 @@ const CategoryFilter = ({onSelectCategories}) => {
     };
   return (
     <div>
-       <FormControl sx={{ m: 1, width: 300 }}>
-        <InputLabel id="demo-multiple-checkbox-label">Category</InputLabel>
+       <FormControl sx={{ m: 1, width: 150 }}>
+        <InputLabel id="demo-multiple-checkbox-label">Filter</InputLabel>
         <Select
           labelId="demo-multiple-checkbox-label"
           id="demo-multiple-checkbox"
