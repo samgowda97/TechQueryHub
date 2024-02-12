@@ -19,13 +19,13 @@ const SelectQuestionCategory = ({selectedCategory,setSelectedCategory}) => {
         label={"question category"}
         onChange={handleSelect}
       >
-      
+
         {categories.map((category, index) => (
           <MenuItem key={index} value={category}>{category}</MenuItem>
 
         ))}
       </Select>
-      <FormHelperText>Question Category</FormHelperText>
+      <FormHelperText>Select Question type</FormHelperText>
     </FormControl>
     </div>
   )

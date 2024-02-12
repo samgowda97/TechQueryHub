@@ -1,4 +1,4 @@
-import { Checkbox, FormControl, InputLabel, ListItemText, MenuItem, OutlinedInput, Select } from '@mui/material';
+import { Checkbox, FormControl, FormHelperText, InputLabel, ListItemText, MenuItem, OutlinedInput, Select } from '@mui/material';
 import React, { useState } from 'react'
 
 const CategoryFilter = ({onSelectCategories}) => {
@@ -29,6 +29,7 @@ const CategoryFilter = ({onSelectCategories}) => {
             </MenuItem>
           ))}
         </Select>
+        <FormHelperText>Filter Category</FormHelperText>
       </FormControl>
     </div>
   )
