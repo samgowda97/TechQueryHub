@@ -148,12 +148,12 @@ const filteredQuestions = useMemo(() => {
       {!isLoggedin && (
         <UserForm handleLoginSubmit={handleLoginSubmit} setUsername={setUsername} username={username} />)}
         <SearchItem searchTerm={searchTerm} setSearchTerm={setSearchTerm}/>
-        <CategoryFilter onSelectCategories={handleSelectCategories} />
+        <CategoryFilter isLoggedin={isLoggedin} onSelectCategories={handleSelectCategories} />
       </div>
 
     <AlertSnackBar open={open} handleClose={handleClose} severity={severityMsg} message={snackMessage} />
    
-      <QuestionForm selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} handleQuestionSubmit={handleQuestionSubmit}  setNewQuestion={setNewQuestion} isLoggedin={isLoggedin} newQuestion={newQuestion}/>
+      <QuestionForm  selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} handleQuestionSubmit={handleQuestionSubmit}  setNewQuestion={setNewQuestion} isLoggedin={isLoggedin} newQuestion={newQuestion}/>
       <div style={{ border: '1px solid #ccc',marginTop:"10px", borderRadius: '8px', padding: '16px',boxShadow: "5px 5px 10px 1px #93afcb" }}>
 {filteredQuestions.length > 0 ? (
 filteredQuestions.map((question) => (

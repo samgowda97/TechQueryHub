@@ -1,7 +1,7 @@
 import { Checkbox, FormControl, FormHelperText, InputLabel, ListItemText, MenuItem, OutlinedInput, Select } from '@mui/material';
 import React, { useState } from 'react'
 
-const CategoryFilter = ({onSelectCategories}) => {
+const CategoryFilter = ({onSelectCategories,isLoggedin}) => {
     const categories = ["Programming Languages","Concepts","Library","Frontend","Backend","Frameworks", "Databases", "Networking"];
     const [selectedCategories, setSelectedCategories] = useState([]);
 
@@ -11,7 +11,7 @@ const CategoryFilter = ({onSelectCategories}) => {
     };
   return (
     <div>
-       <FormControl sx={{ m: 1, width: 150 }}>
+       <FormControl sx={{ m: 1, width: 150 }} >
         <InputLabel id="demo-multiple-checkbox-label">Filter</InputLabel>
         <Select
           labelId="demo-multiple-checkbox-label"

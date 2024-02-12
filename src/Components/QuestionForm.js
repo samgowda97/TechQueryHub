@@ -44,6 +44,7 @@ const QuestionForm = ({handleQuestionSubmit, setNewQuestion,isLoggedin,newQuesti
         onChange={handleChange}
         autoComplete="off"
         variant="outlined" 
+        disabled={!isLoggedin}
       />
       <Button
         className="questions-button"
