@@ -52,7 +52,7 @@ const handleClose = (event, reason) => {
     else{
       dispatch(loginUser(username));
       setisLoggedin(true)
-      setSnackMessage("User Added")
+      setSnackMessage("Logged in")
       setOpen(true);
       setSeverityMsg("success")
     }
@@ -86,6 +86,9 @@ const handleClose = (event, reason) => {
   const handleDeleteQuestion = (currentUser,id) => {
       if (currentUser === user) { 
         dispatch(deleteQuestion({ id }));
+        setSnackMessage("Question Deleted");
+        setOpen(true);
+        setSeverityMsg("info");
       } else {
         alert("You can only delete your own questions.");
       }
@@ -106,6 +109,9 @@ const handleClose = (event, reason) => {
   const handleDeleteAnswer = (currentUser,answerid) => {
     if (currentUser === user) {
       dispatch(deleteAnswer({ id: answerid }));
+      setSnackMessage("Answer Deleted");
+      setOpen(true);
+      setSeverityMsg("info");
     } else {
       alert("You can only delete your own answers.");
     }
@@ -155,7 +161,7 @@ filteredQuestions.map((question) => (
     <div style={{ display: 'flex', alignItems: 'center', marginRight: '10px' }}>
     <Tooltip title={`${question.user}`} arrow>
  <Avatar variant="square" {...stringAvatar(question.user)} /></Tooltip>
-      <strong style={{ marginLeft: '10px' }}>Q:</strong>
+ <Tooltip title="Question" arrow><strong style={{ marginLeft: '10px' }}>Q:</strong></Tooltip>
      <span className='question-container'> <span className='question-text' style={{ marginLeft: '10px' }}>{question.text}</span></span>
     {question.user === user && 
     (<Tooltip title="Delete" arrow><IconButton size="small" aria-label="delete" style={{margin:"0px 10px 10px 10px"}} onClick={() => handleDeleteQuestion(question.user,question.id)}>
@@ -182,7 +188,7 @@ filteredQuestions.map((question) => (
                  <Tooltip title={`${answer.user}`} arrow>
  <Avatar {...stringAvatar(answer.user)} />
  </Tooltip>   
- <strong style={{ marginLeft: '10px' }}>A:</strong>
+ <Tooltip title="Answer" arrow><strong style={{ marginLeft: '10px' }}>A:</strong></Tooltip>
               <span className='answer-container'>
               <span className='answer-text' style={{ marginLeft: '10px' }}>{answer.text}</span>
             
