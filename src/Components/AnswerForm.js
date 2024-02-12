@@ -1,12 +1,11 @@
-import { TextFields } from '@mui/icons-material'
-import { Button} from '@mui/material'
+import { Button, TextField} from '@mui/material'
 import React from 'react'
 
 const AnswerForm = ({handleAnswerSubmit,answerText,setAnswerText}) => {
   return (
     <div>
         <form onSubmit={handleAnswerSubmit} style={{ marginTop: '10px' }}>
-        <TextFields
+        <TextField
           type="text"
           value={answerText}
           onChange={(e) => setAnswerText(e.target.value)}
@@ -15,6 +14,7 @@ const AnswerForm = ({handleAnswerSubmit,answerText,setAnswerText}) => {
           fullWidth
           style={{ margin: '0px 10px 10px 115px',width:"200px" }}
           size='small'
+          autoComplete='off'
         />
         <Button type="submit" size='small' variant="contained">
           Submit

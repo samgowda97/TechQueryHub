@@ -14,7 +14,7 @@ const UserForm = ({ handleLoginSubmit, setUsername, username }) => {
           autoComplete="off"
         />
         {username.length > 0 && 
-          <Button type="submit" size="small" variant="outlined" style={{alignItems:"right",width:"90px",margin:"10px 0px 0px 150px" }}>Add User</Button>
+          <Button type="submit" size="small" variant="outlined" style={{alignItems:"right",width:"90px",margin:"10px 0px 0px 150px" }}>Login</Button>
         }
         </div>
       </form>

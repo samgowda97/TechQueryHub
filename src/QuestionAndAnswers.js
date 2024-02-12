@@ -101,9 +101,7 @@ const handleSelectCategories = (categories) => {
   setSelectedCategories(categories);
 };
 
-const filteredAnswers = answers.filter(answer =>
-  answer.text.toLowerCase().includes(searchTerm.toLowerCase())
-);
+
 
 const filteredQuestions = useMemo(() => {
   let filtered = questions;
@@ -158,7 +156,7 @@ filteredQuestions.map((question) => (
       </Button>
   </div>
     <ul>
-      {filteredAnswers
+      {answers
         .filter(answer => answer.questionId === question.id)
         .map(answer => (
           <div key={answer.id}>

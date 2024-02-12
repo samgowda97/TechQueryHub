@@ -19,6 +19,7 @@ const questionsSlice = createSlice({
       const { id, user, text, category } = action.payload;
       state.questions.push({ id, user, text, category });
     },
+   
   },
 });
 
