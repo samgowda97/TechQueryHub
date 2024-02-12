@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { addQuestion } from './questionsSlice';
 import { addAnswer } from './answersSlice';
 import { loginUser, logoutUser } from './userSlice'; 
-import { Avatar, Button, Tooltip } from '@mui/material';
+import { Avatar, Button, IconButton, Tooltip } from '@mui/material';
 import AlertSnackBar from './Components/AlertSnackBar';
 import UserForm from './Components/UserForm';
 import QuestionForm from './Components/QuestionForm';
@@ -13,7 +13,9 @@ import CategoryFilter from './Components/CategoryFilter';
 import { v4 as uuidv4 } from 'uuid';
 import AnswerForm from './Components/AnswerForm';
 import SearchItem from './Components/SearchItem';
-
+import { deleteQuestion } from './questionsSlice';
+import DeleteIcon from '@mui/icons-material/Delete';
+import { deleteAnswer } from './answersSlice';
 
 const QuestionsAndAnswers = () => {
   const dispatch = useDispatch();
@@ -81,6 +83,13 @@ const handleClose = (event, reason) => {
       setSelectedCategory('')
     }
   };
+  const handleDeleteQuestion = (currentUser,id) => {
+      if (currentUser === user) { 
+        dispatch(deleteQuestion({ id }));
+      } else {
+        alert("You can only delete your own questions.");
+      }
+    };
   
   const handleAnswerSubmit = (e) => {
     e.preventDefault();
@@ -92,6 +101,13 @@ const handleClose = (event, reason) => {
       setSeverityMsg("success");
       setAnswerText('');
       setSelectedQuestionId('');
+    }
+  };
+  const handleDeleteAnswer = (currentUser,answerid) => {
+    if (currentUser === user) {
+      dispatch(deleteAnswer({ id: answerid }));
+    } else {
+      alert("You can only delete your own answers.");
     }
   };
  
@@ -116,7 +132,7 @@ const filteredQuestions = useMemo(() => {
 
   return filtered;
 }, [questions, selectedCategories, searchTerm]);
-
+console.log(questions)
   return (
     <div>
       <NavBar handleLogout={handleLogout} handleLoginSubmit={handleLoginSubmit} setUsername={setUsername} username={username}/>
@@ -141,6 +157,12 @@ filteredQuestions.map((question) => (
  <Avatar variant="square" {...stringAvatar(question.user)} /></Tooltip>
       <strong style={{ marginLeft: '10px' }}>Q:</strong>
      <span className='question-container'> <span className='question-text' style={{ marginLeft: '10px' }}>{question.text}</span></span>
+    {question.user === user && 
+    (<Tooltip title="Delete" arrow><IconButton size="small" aria-label="delete" style={{margin:"0px 10px 10px 10px"}} onClick={() => handleDeleteQuestion(question.user,question.id)}>
+    <DeleteIcon fontSize="inherit" />
+  </IconButton></Tooltip>)
+    }
+
     </div>
       <Button
         size="small"
@@ -163,7 +185,14 @@ filteredQuestions.map((question) => (
  <strong style={{ marginLeft: '10px' }}>A:</strong>
               <span className='answer-container'>
               <span className='answer-text' style={{ marginLeft: '10px' }}>{answer.text}</span>
+            
+
               </span>
+              {answer.user === user && (
+        (<Tooltip title="Delete" arrow><IconButton size='small' aria-label="delete" style={{margin:"0px 10px 10px 10px"}} onClick={() => handleDeleteAnswer(answer.user,answer.id)}>
+    <DeleteIcon fontSize="inherit"/>
+  </IconButton></Tooltip>)
+      )}
             </div>
           </div>
         ))}

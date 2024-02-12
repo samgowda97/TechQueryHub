@@ -19,10 +19,14 @@ const questionsSlice = createSlice({
       const { id, user, text, category } = action.payload;
       state.questions.push({ id, user, text, category });
     },
+    deleteQuestion(state, action) {
+      const { id } = action.payload;
+      state.questions = state.questions.filter(question => question.id !== id);
+    },
    
   },
 });
 
-export const { addQuestion } = questionsSlice.actions;
+export const { addQuestion,deleteQuestion  } = questionsSlice.actions;
 
 export default questionsSlice.reducer;
