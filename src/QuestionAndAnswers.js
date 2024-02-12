@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { addQuestion } from './questionsSlice';
 import { addAnswer } from './answersSlice';
@@ -81,6 +81,8 @@ const handleClose = (event, reason) => {
       setNewQuestion('');
       setSelectedCategories([]);
       setSelectedCategory('')
+      setSearchTerm('')
+
     }
   };
   const handleDeleteQuestion = (currentUser,id) => {
@@ -125,7 +127,7 @@ const handleSelectCategories = (categories) => {
 const filteredQuestions = useMemo(() => {
   let filtered = questions;
 
-  if (selectedCategories.length > 0 || searchTerm.trim() !== '') {
+  if (selectedCategories.length > 0) {
     filtered = filtered.filter(question => selectedCategories.includes(question.category));
   }
 
@@ -138,7 +140,6 @@ const filteredQuestions = useMemo(() => {
 
   return filtered;
 }, [questions, selectedCategories, searchTerm]);
-console.log(questions)
   return (
     <div>
       <NavBar handleLogout={handleLogout} handleLoginSubmit={handleLoginSubmit} setUsername={setUsername} username={username}/>
