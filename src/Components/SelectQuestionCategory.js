@@ -2,7 +2,7 @@ import { FormControl, FormHelperText, InputLabel, MenuItem, Select } from '@mui/
 import React from 'react'
 
 const SelectQuestionCategory = ({selectedCategory,setSelectedCategory}) => {
-  let categories=["Programming Languages","Library","Frontend","Backend","Frameworks", "Databases", "Networking"]
+  let categories=["Programming Languages","Concepts","Library","Frontend","Backend","Frameworks", "Databases", "Networking"]
   return (
     <div style={{alignSelf:"flex-start"}}>
       

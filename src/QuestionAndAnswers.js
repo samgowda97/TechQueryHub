@@ -3,16 +3,16 @@ import { useSelector, useDispatch } from 'react-redux';
 import { addQuestion } from './questionsSlice';
 import { addAnswer } from './answersSlice';
 import { loginUser, logoutUser } from './userSlice'; 
-import { Avatar, Button, TextField, Tooltip } from '@mui/material';
+import { Avatar, Button, Tooltip } from '@mui/material';
 import AlertSnackBar from './Components/AlertSnackBar';
 import UserForm from './Components/UserForm';
-import SearchBar from "material-ui-search-bar";
 import QuestionForm from './Components/QuestionForm';
 import NavBar from './Components/NavBar';
 import { stringAvatar } from './commonFunctionalities';
 import CategoryFilter from './Components/CategoryFilter';
 import { v4 as uuidv4 } from 'uuid';
 import AnswerForm from './Components/AnswerForm';
+import SearchItem from './Components/SearchItem';
 
 
 const QuestionsAndAnswers = () => {
@@ -27,13 +27,14 @@ const QuestionsAndAnswers = () => {
   const [snackMessage,setSnackMessage]=useState('')
   const[username,setUsername]=useState('')
   const[severityMsg,setSeverityMsg]=useState('')
-const [isLoggedin,setisLoggedin]=useState(false)
-const [selectedCategory, setSelectedCategory] = useState('');
+  const [isLoggedin,setisLoggedin]=useState(false)
+  const [selectedCategory, setSelectedCategory] = useState('');
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedCategories, setSelectedCategories] = useState('');
 
-
-const handleClick = () => {
-  setOpen(true);
-};
+// const handleClick = () => {
+//   setOpen(true);
+// };
 const handleClose = (event, reason) => {
   if (reason === 'clickaway') {
     return;
@@ -41,12 +42,9 @@ const handleClose = (event, reason) => {
 
   setOpen(false);
 };
-  const handleLogin = (username) => {
-    dispatch(loginUser(username));
-  };
-  const handleLoginSubmit=(e)=>{
-    // console.log(username.length,":eee")
-    if(username.length==0){
+ 
+  const handleLoginSubmit=()=>{
+    if(username.length===0){
       setSnackMessage("Type Name")
       setOpen(true);
       setSeverityMsg("error")
@@ -97,20 +95,15 @@ const handleClose = (event, reason) => {
       setSelectedQuestionId('');
     }
   };
-  const [searchTerm, setSearchTerm] = useState('');
-
-
-  const filteredAnswers = answers.filter(answer =>
-    answer.text.toLowerCase().includes(searchTerm.toLowerCase())
-  );
-
-const [selectedCategories, setSelectedCategories] = useState('');
+ 
 
 const handleSelectCategories = (categories) => {
   setSelectedCategories(categories);
 };
 
-
+const filteredAnswers = answers.filter(answer =>
+  answer.text.toLowerCase().includes(searchTerm.toLowerCase())
+);
 
 const filteredQuestions = useMemo(() => {
   let filtered = questions;
@@ -130,7 +123,6 @@ const filteredQuestions = useMemo(() => {
   return filtered;
 }, [questions, selectedCategories, searchTerm]);
 
-console.log(questions)
   return (
     <div >
       <NavBar handleLogout={handleLogout} handleLoginSubmit={handleLoginSubmit} setUsername={setUsername} username={username}/>
@@ -138,12 +130,7 @@ console.log(questions)
       <div style={{ display: 'flex',justifyContent:"space-between" }}> 
       {!isLoggedin && (
         <UserForm handleLoginSubmit={handleLoginSubmit} setUsername={setUsername} username={username} />)}
-        <SearchBar
-          value={searchTerm}
-          onChange={(value) => setSearchTerm(value)}
-          onCancelSearch={() => setSearchTerm('')}
-          style={{ width: '300px',marginTop:"10px" }} 
-        />
+        <SearchItem searchTerm={searchTerm} setSearchTerm={setSearchTerm}/>
         <CategoryFilter onSelectCategories={handleSelectCategories} />
       </div>
 
@@ -197,11 +184,9 @@ filteredQuestions.map((question) => (
     </div>
   )}
   </div>
-
-
-
   </div>
-  </div>)
+  </div>   
+  ); 
 };
 
 export default QuestionsAndAnswers;

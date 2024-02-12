@@ -5,8 +5,8 @@ let nextQuestionId = 1;
 
 const initialState = {
   questions: [
-    { id: nextQuestionId++,user:"john", text: 'What is Redux?',category:'Library' },
-    { id: nextQuestionId++,user:"David", text: 'How to use React Hooks?',category:'React' },
+    { id: nextQuestionId++,user:"john", text: ' What is the purpose of the alt attribute in HTML <img> tags?',category:'Frontend' },
+    { id: nextQuestionId++,user:"David", text: 'What is the concept of middleware in the context of backend development',category:'Backend' },
   ],
 };
 
