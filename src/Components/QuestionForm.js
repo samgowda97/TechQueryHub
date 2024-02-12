@@ -25,6 +25,9 @@ const QuestionForm = ({handleQuestionSubmit, setNewQuestion,isLoggedin,newQuesti
   
     setOpen(false);
   };
+  const handleChange=(e)=>{
+    setNewQuestion(e.target.value)
+  }
   return (
     <div>
     <h2 className="question-heading">Ask a Technical Question </h2>
@@ -38,7 +41,7 @@ const QuestionForm = ({handleQuestionSubmit, setNewQuestion,isLoggedin,newQuesti
         id="demo-helper-text-aligned-no-helper"
         label="Enter your question"
         value={newQuestion}
-        onChange={(e) => setNewQuestion(e.target.value)}
+        onChange={handleChange}
         autoComplete="off"
         variant="outlined" 
       />

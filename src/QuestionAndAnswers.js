@@ -25,16 +25,14 @@ const QuestionsAndAnswers = () => {
   const [answerText, setAnswerText] = useState('');
   const [selectedQuestionId, setSelectedQuestionId] = useState('');
   const [snackMessage,setSnackMessage]=useState('')
-  const[username,setUsername]=useState('')
-  const[severityMsg,setSeverityMsg]=useState('')
+  const [username,setUsername]=useState('')
+  const [severityMsg,setSeverityMsg]=useState('')
   const [isLoggedin,setisLoggedin]=useState(false)
   const [selectedCategory, setSelectedCategory] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategories, setSelectedCategories] = useState('');
 
-// const handleClick = () => {
-//   setOpen(true);
-// };
+
 const handleClose = (event, reason) => {
   if (reason === 'clickaway') {
     return;
@@ -66,6 +64,7 @@ const handleClose = (event, reason) => {
     setOpen(true);
     setSeverityMsg("warning")
     setUsername('')
+    setSelectedQuestionId('')
   };
 
 
@@ -101,11 +100,8 @@ const handleSelectCategories = (categories) => {
   setSelectedCategories(categories);
 };
 
-
-
 const filteredQuestions = useMemo(() => {
   let filtered = questions;
- 
 
   if (selectedCategories.length > 0) {
     filtered = filtered.filter(question => selectedCategories.includes(question.category));
@@ -174,7 +170,7 @@ filteredQuestions.map((question) => (
     </ul>
     
     {selectedQuestionId === question.id && (
-      <AnswerForm handleAnswerSubmit={handleAnswerSubmit} answerText={answerText} setAnswerText={setAnswerText}/>    
+     isLoggedin &&  <AnswerForm isLoggedin={isLoggedin} handleAnswerSubmit={handleAnswerSubmit} answerText={answerText} setAnswerText={setAnswerText}/>    
     )}
   </div>))):(
     <div style={{ textAlign: 'center', marginTop: '20px' }}>

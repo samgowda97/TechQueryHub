@@ -1,6 +1,9 @@
 import { Button, TextField } from "@mui/material";
 
 const UserForm = ({ handleLoginSubmit, setUsername, username }) => {
+  const handleUser=(e)=>{
+    setUsername(e.target.value)
+  }
     return (
       <div >
       <form onSubmit={handleLoginSubmit} >
@@ -10,7 +13,7 @@ const UserForm = ({ handleLoginSubmit, setUsername, username }) => {
           id="demo-helper-text-aligned-no-helper"
           label="Name"
           value={username} 
-          onChange={(e) => setUsername(e.target.value)}
+          onChange={handleUser}
           autoComplete="off"
         />
         {username.length > 0 && 

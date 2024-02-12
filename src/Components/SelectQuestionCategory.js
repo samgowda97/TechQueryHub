@@ -3,6 +3,10 @@ import React from 'react'
 
 const SelectQuestionCategory = ({selectedCategory,setSelectedCategory}) => {
   let categories=["Programming Languages","Concepts","Library","Frontend","Backend","Frameworks", "Databases", "Networking"]
+  const handleSelect=(e)=>{
+    setSelectedCategory(e.target.value)
+  }
+  
   return (
     <div style={{alignSelf:"flex-start"}}>
       
@@ -13,7 +17,7 @@ const SelectQuestionCategory = ({selectedCategory,setSelectedCategory}) => {
         id="demo-select-small"
         value={selectedCategory}
         label={"question category"}
-        onChange={(e) => setSelectedCategory(e.target.value)}
+        onChange={handleSelect}
       >
       
         {categories.map((category, index) => (
